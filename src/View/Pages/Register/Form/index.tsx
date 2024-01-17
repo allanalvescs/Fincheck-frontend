@@ -3,7 +3,7 @@ import { Input } from "../../../Components/Input";
 import { useFormRegister } from "./useFormRegisterHandler";
 
 export function Form() {
-    const { register, handleSubmit, errors } = useFormRegister()
+    const { register, handleSubmit, errors, isLoading } = useFormRegister()
     return (
         <form
             onSubmit={handleSubmit} 
@@ -30,7 +30,7 @@ export function Form() {
                 error={errors.password?.message}
             />
 
-            <Button type="submit" className="mt-2">
+            <Button type="submit" className="mt-2" isLoading={isLoading}>
                 Criar conta
             </Button>
      </form>
