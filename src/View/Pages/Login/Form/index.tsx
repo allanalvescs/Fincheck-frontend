@@ -3,7 +3,7 @@ import { Input } from "../../../Components/Input";
 import { useFormLoginHandler } from "./useFormLoginHandler";
 
 export function Form() {
-    const { handleSubmit, register, errors } = useFormLoginHandler()
+    const { handleSubmit, register, errors, isLoading } = useFormLoginHandler()
     return (
         <form 
             onSubmit={handleSubmit}
@@ -23,7 +23,7 @@ export function Form() {
              {...register('password')}
             />
 
-            <Button type="submit" className="mt-2">
+            <Button type="submit" className="mt-2" isLoading={isLoading}>
                 Entrar
             </Button>
         </form>

@@ -1,5 +1,12 @@
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../Components/Button";
+
 export function Dashboard () {
+    const navigate = useNavigate()
     return (
-        <h1>Dashboard</h1>
+        <div>
+            <h1>Dashboard</h1>
+            <Button>Sair</Button>
+        </div>
     )
 }
