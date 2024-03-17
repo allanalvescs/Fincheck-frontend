@@ -1,7 +1,6 @@
-import { useAuth } from "../../../App/hooks/useAuth";
 import { Logo } from "../../Components/Logo";
 import { UserMenu } from "../../Components/UserMenu";
-import { Accounts } from "./Components/Accounts/Accounts";
+import { Accounts } from "./Components/Accounts";
 import { Transactions } from "./Components/Transactions";
 
 export function Dashboard () {
