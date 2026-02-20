@@ -1,12 +1,12 @@
 import { useDashboard } from "../../../../../App/hooks/useDashboard";
 
-export function useTransactionController () {
+export function useTransactionsController() {
     const { areValuesVisible } = useDashboard();
 
-    return {
+    return { 
         areValuesVisible,
         isInitialLoading: false,
         isLoading: false,
-        transactios: [{}]
-    }
+        transactions: []
+    };
 }

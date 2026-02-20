@@ -81,14 +81,14 @@ export function Accounts() {
                         {hasAccounts && (
                             <div>
                                 <Swiper
-                                spaceBetween={16}
-                                slidesPerView={windowWidth >= 1024 ? 2.1 : 1.1}
-                                onSlideChange={swiper => {
-                                    setSliderState({
-                                        isBeginning: swiper.isBeginning,
-                                        isEnd: swiper.isEnd
-                                    })
-                                }}
+                                    spaceBetween={16}
+                                    slidesPerView={windowWidth >= 1024 ? 2.1 : 1.1}
+                                    onSlideChange={swiper => {
+                                        setSliderState({
+                                            isBeginning: swiper.isBeginning,
+                                            isEnd: swiper.isEnd
+                                        })
+                                    }}
                                 >
                                     <div className="flex justify-between mb-4" slot="container-start">
                                         <strong className="text-white tracking-[-1px] text-lg">Minhas contas</strong>
