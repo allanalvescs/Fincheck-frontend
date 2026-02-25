@@ -5,6 +5,8 @@ import { UserMenu } from "../../Components/UserMenu";
 import { Accounts } from "./Components/Accounts";
 import { Fab } from "./Components/Fab";
 import { Transactions } from "./Components/Transactions";
+import { NewAccountModal } from "./modals/NewAccountModal";
+import { NewTransactionModal } from "./modals/NewTransactionModal";
 
 export function Dashboard () {
     return (
@@ -26,9 +28,8 @@ export function Dashboard () {
                 </main>
 
                 <Fab />
-                {/* <Modal open={false} title="Receitas">
-                   Conteudo
-                </Modal> */}
+                <NewAccountModal />
+                <NewTransactionModal />
             </div>
         </DashboardProvider>
     )

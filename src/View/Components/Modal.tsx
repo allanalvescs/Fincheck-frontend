@@ -1,7 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog"
-import { cn } from "../../../App/Utils/cn"
-import { ModalContent } from "./ModalContent";
-import { ModalHeader } from "./ModalHeader";
+import { cn } from "../../App/Utils/cn"
 import { Cross2Icon } from "@radix-ui/react-icons";
 
 interface ModalProps {
@@ -23,7 +21,7 @@ export function Modal({ open, title, children, rightSlot, onClose }: ModalProps)
 
                 <Dialog.Content
                     className={cn(
-                        `fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 space-y-10 bg-white rounded-2xl z-[60] 
+                        `fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 space-y-10 bg-white rounded-2xl z-[50] 
                         shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] w-full max-w-[400px] outline-none   `,
                         "data-[state=open]:animate-content-show"
                     )}
@@ -36,9 +34,9 @@ export function Modal({ open, title, children, rightSlot, onClose }: ModalProps)
                             <Cross2Icon className="w-6 h-6"/>
                         </button>
                         
-                        <span className="text-lg font-bold tracking-[-1px]">
+                        <Dialog.Title className="text-lg font-bold tracking-[-1px]" arial-des>
                             {title}
-                        </span>
+                        </Dialog.Title>
 
                         <div className="w-12 h-12 flex items-center justify-center">
                             {rightSlot}
@@ -53,6 +51,3 @@ export function Modal({ open, title, children, rightSlot, onClose }: ModalProps)
 	    </Dialog.Root>
     )
 }
-
-Modal.Header = ModalHeader;
-Modal.Content = ModalContent;

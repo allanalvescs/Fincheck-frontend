@@ -1,5 +1,3 @@
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { TransactionsIcon } from "../../../../Components/icons/TransactionsIcon";
 import { FilterIcon } from "../../../../Components/icons/FilterIcon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MONTHS } from "../../../../../App/config/constants";
