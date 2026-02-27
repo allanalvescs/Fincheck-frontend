@@ -1,6 +1,6 @@
 import { createContext, useCallback, useState } from "react";
 import { localStorageKeys } from "../config/localStorageKeys";
-import { BankAccount } from "../entities/bankAccount";
+import { BankAccount } from "../entities/BankAccount";
 
 interface DashboardContextValue {
     areValuesVisible: boolean;

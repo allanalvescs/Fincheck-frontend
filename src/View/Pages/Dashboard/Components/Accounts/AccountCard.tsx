@@ -1,4 +1,4 @@
-import { BankAccount } from "../../../../../App/entities/bankAccount";
+import { BankAccount } from "../../../../../App/entities/BankAccount";
 import { useDashboard } from "../../../../../App/hooks/useDashboard";
 import { cn } from "../../../../../App/Utils/cn";
 import { formatCurrency } from "../../../../../App/Utils/formatCurrency";

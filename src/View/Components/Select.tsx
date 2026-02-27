@@ -8,7 +8,7 @@ interface SelectProps {
     error?: string;
     placeholder?: string;
     value?: string;
-    onChange: (value: string) => void;
+    onChange?: (value: string) => void;
     options: {
         value: string;
         label: string;
@@ -20,7 +20,7 @@ export function Select({ className, error, placeholder, options, value, onChange
 
     function handleSelect(value: string) {
         setSelectValue(value);
-        onChange(value);
+        onChange?.(value);
     }
     
     return (
