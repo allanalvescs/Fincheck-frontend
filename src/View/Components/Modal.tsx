@@ -34,7 +34,7 @@ export function Modal({ open, title, children, rightSlot, onClose }: ModalProps)
                             <Cross2Icon className="w-6 h-6"/>
                         </button>
                         
-                        <Dialog.Title className="text-lg font-bold tracking-[-1px]" arial-des>
+                        <Dialog.Title className="text-lg font-bold tracking-[-1px]" aria-describedby={title}>
                             {title}
                         </Dialog.Title>
 

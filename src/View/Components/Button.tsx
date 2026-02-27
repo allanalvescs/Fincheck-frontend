@@ -3,10 +3,11 @@ import { cn } from "../../App/Utils/cn";
 import { Spinner } from "./Spinner";
 
 interface ButtonProps extends ComponentProps<"button"> {
-    isLoading?: boolean
+    isLoading?: boolean;
+    variant?: "ghost" | "danger";
 }
 
-export function Button({className, isLoading, disabled, children ,...props}: ButtonProps) {
+export function Button({className, isLoading, disabled, children , variant, ...props}: ButtonProps) {
     return (
     <button 
         {...props}
@@ -15,6 +16,8 @@ export function Button({className, isLoading, disabled, children ,...props}: But
             `bg-teal-900 hover:bg-teal-800 disabled:bg-gray-100 
             disabled:text-gray-400 disabled:cursor-not-allowed px-6 h-12 rounded-2xl 
             font-medium text-white flex items-center justify-center`,
+            variant === "danger" && "bg-red-900 hover:bg-red-800",
+            variant === "ghost" && "bg-transparent border border-gray-800 text-gray-800 hover:bg-gray-100",
             className
         )}
     >

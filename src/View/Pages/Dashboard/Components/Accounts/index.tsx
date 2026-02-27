@@ -19,6 +19,7 @@ export function Accounts() {
         toggleVisibilityValues,
         isLoading,
         accounts,
+        currentBalance,
         openNewAccountModal
     } = useAccountsController();
 
@@ -45,7 +46,7 @@ export function Accounts() {
                                     !areValuesVisible && 'blur-md',
                                 )
                             }>
-                                {formatCurrency(150000)}
+                                {formatCurrency(currentBalance)}
                             </strong>
 
                             <button 
@@ -100,30 +101,13 @@ export function Accounts() {
                                             />
                                     </div>
                                 
-                                    <SwiperSlide>
-                                        <AccountCard 
-                                            name="Nubank"
-                                            color="#7950F2"
-                                            balance={1000}
-                                            type="CHECKING"
+                                    {accounts.map(account => (
+                                        <SwiperSlide key={account.id}>
+                                            <AccountCard
+                                               data={account}
                                             />
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <AccountCard 
-                                            name="XP"
-                                            color="#333"
-                                            balance={1000}
-                                            type="INVESTMENT"
-                                            />
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <AccountCard 
-                                            name="Carteira"
-                                            color="#0f0"
-                                            balance={1000}
-                                            type="CASH"
-                                            />
-                                    </SwiperSlide>
+                                        </SwiperSlide>
+                                    ))}
                                 </Swiper>
                             </div>
                         )}
