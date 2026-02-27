@@ -11,6 +11,7 @@ import { Spinner } from "../../../../Components/Spinner";
 import emptyStateImage from "../../../../../Assets/Empty State.svg";
 import { TransactionTypeDropdown } from "./TransactionTypeDropdown";
 import { FiltersModal } from "./FiltersModal";
+import { FormatDate } from "../../../../../App/Utils/formatDate";
 
 export function Transactions() {
     const { 
@@ -20,7 +21,10 @@ export function Transactions() {
         transactions,
         handleCloseFiltersModal,
         handleOpenFiltersModal,
-        isFiltersModalOpen
+        isFiltersModalOpen,
+        handleChangeFilters,
+        filters,
+        handleApplyFilters
     } = useTransactionsController();
 
     const hasTransactions = transactions.length > 0;
@@ -37,11 +41,15 @@ export function Transactions() {
             <>
                 <FiltersModal 
                     open={isFiltersModalOpen} 
-                    onClose={handleCloseFiltersModal} 
+                    onClose={handleCloseFiltersModal}
+                    onApplyFilters={handleApplyFilters}
                 />
                 <header>
                     <div className="flex items-center justify-between">
-                        <TransactionTypeDropdown />
+                        <TransactionTypeDropdown 
+                            onSelect={handleChangeFilters("type")}
+                            selectedType={filters.type}
+                        />
 
                         <button onClick={handleOpenFiltersModal}>
                             <FilterIcon/>
@@ -52,6 +60,12 @@ export function Transactions() {
                         <Swiper
                             slidesPerView={3}
                             centeredSlides
+                            initialSlide={filters.month}
+                            onSlideChange={(swiper) => {
+                                if (swiper.realIndex === filters.month) return;
+
+                                handleChangeFilters("month")(swiper.realIndex);
+                            }}
                         >
                             <SliderNavigation />
                         {MONTHS.map((month, index) => (
@@ -89,41 +103,36 @@ export function Transactions() {
 
                     {(hasTransactions && !isLoading) && (
                         <>
-                            <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
-                                <div className="flex-1 flex items-center gap-3">
-                                    <CategoryIcon type="expense"/>
+                           {transactions.map((transaction) => (
+                                <div
+                                    key={transaction.id} 
+                                    className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
+                                    <div className="flex-1 flex items-center gap-3">
+                                        <CategoryIcon
+                                            type={transaction.type === "EXPENSE" ? "expense" : "income"}
+                                            category={transaction.category?.icon}
+                                        />
 
-                                    <div>
-                                        <strong className="font-bold tracking-[-0.5px] block ">Almoço</strong>
-                                        <span className="text-sm text-gray-600">01/05/2026</span>
+                                        <div>
+                                            <strong className="font-bold tracking-[-0.5px] block ">
+                                                {transaction.name}
+                                            </strong>
+                                            <span className="text-sm text-gray-600">
+                                                {FormatDate(new Date(transaction.date))}
+                                            </span>
+                                        </div>
                                     </div>
+
+                                    <span className={cn(
+                                        "text-red-800 tracking-[-0.5px] font-medium",
+                                        transaction.type === "INCOME" ? "text-green-800" : "text-red-800",
+                                        !areValuesVisible && "blur-sm"
+                                    )}>
+                                        {transaction.type === "EXPENSE" ? "- " : "+ "}
+                                        {formatCurrency(transaction.value)}
+                                    </span>
                                 </div>
-
-                                <span className={cn(
-                                    "text-red-800 tracking-[-0.5px] font-medium",
-                                    !areValuesVisible && "blur-sm"
-                                )}>
-                                    {formatCurrency(16000)}
-                                </span>
-                            </div>
-
-                            <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
-                                <div className="flex-1 flex items-center gap-3">
-                                    <CategoryIcon type="income"/>
-
-                                    <div>
-                                        <strong className="font-bold tracking-[-0.5px] block ">Almoço</strong>
-                                        <span className="text-sm text-gray-600">01/05/2026</span>
-                                    </div>
-                                </div>
-
-                                <span className={cn(
-                                    "text-green-800 tracking-[-0.5px] font-medium",
-                                    !areValuesVisible && "blur-sm"
-                                )}>
-                                    {formatCurrency(16000)}
-                                </span>
-                            </div>
+                           ))}
                         </>
                     )}
                 </div>

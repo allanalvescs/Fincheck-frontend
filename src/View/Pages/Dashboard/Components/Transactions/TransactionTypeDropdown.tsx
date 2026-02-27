@@ -4,30 +4,39 @@ import { TransactionsIcon } from "../../../../Components/icons/TransactionsIcon"
 import { IncomeIcon } from "../../../../Components/icons/IncomeIcon";
 import { ExpensesIcon } from "../../../../Components/icons/ExpensesIcon";
 
-export function TransactionTypeDropdown() {
+interface TransactionTypeDropdownProps {
+    onSelect: (type: undefined | "INCOME" | "EXPENSE") => void;
+    selectedType?: undefined | "INCOME" | "EXPENSE";
+}
+
+export function TransactionTypeDropdown({ onSelect, selectedType }: TransactionTypeDropdownProps) {
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger>
                 <button className="flex items-center gap-2">
                     <TransactionsIcon />
-                    <span className="text-sm text-gray-800 tracking-[-0.5px]">Transações</span>
+                    <span className="text-sm text-gray-800 tracking-[-0.5px]">
+                        {selectedType === "INCOME" && "Receitas"}
+                        {selectedType === "EXPENSE" && "Despesas"}
+                        {selectedType === undefined && "Transações"}
+                    </span>
                     <ChevronDownIcon/>
                 </button>
             </DropdownMenu.Trigger>
 
             <DropdownMenu.Content className="w-[279px]">
 
-                <DropdownMenu.Item className="gap-2">
+                <DropdownMenu.Item className="gap-2" onSelect={() => onSelect("INCOME")}>
                     <IncomeIcon/>
                     Receitas
                 </DropdownMenu.Item>
 
-                 <DropdownMenu.Item className="gap-2">
+                 <DropdownMenu.Item className="gap-2" onSelect={() => onSelect("EXPENSE")}>
                     <ExpensesIcon/>
                     Despesas
                 </DropdownMenu.Item>
                 
-                <DropdownMenu.Item className="gap-2">
+                <DropdownMenu.Item className="gap-2" onSelect={() => onSelect(undefined)}>
                     <TransactionsIcon/>
                     Transações
                 </DropdownMenu.Item>
